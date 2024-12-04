@@ -54,8 +54,8 @@ const MySingleTicket = () => {
   return (
     <Col className="col-12 col-xl-6 mb-5 mb-xl-0">
       {invoice.ticket.map((ticket, index) => (
-        <div key={index} className="w-100 text-center text-xl-start d-xl-flex align-items-center mb-4 border border-1 border-Pimary bg-black rounded-4 p-4">
-          <div className="me-xl-3 mb-2 mb-xl-0">
+        <div key={index} className="w-100 text-center text-md-start d-md-flex justify-content-center justify-content-md-start align-items-center mb-4 border border-1 border-Pimary bg-black rounded-4 p-4">
+          <div className="me-md-3 mb-2 mb-xl-0">
             <QRCodeSVG
               value={ticket.id_ticket}
               bgColor="#212529"
