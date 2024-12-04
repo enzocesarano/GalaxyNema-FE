@@ -4,7 +4,7 @@ const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/iconGALAXY-02.png',
+  '/Icon-02.png',
   '/manifest.json',
   '/src/index.js', 
   '/src/index.css',
