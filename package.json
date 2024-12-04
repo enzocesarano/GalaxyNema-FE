@@ -12,6 +12,7 @@
     "cra-template-pwa": "^2.0.0",
     "dayjs": "^1.11.13",
     "m7-d1-remote-jobs-hw": "file:",
+    "qrcode.react": "^4.1.0",
     "react": "^18.1.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.1.0",

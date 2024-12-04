@@ -10,6 +10,8 @@ export const SELECT_PROIEZIONE = "SELECT_PROIEZIONE"
 export const AGGIUNGI_PREFERITO = "GGIUNGI_PREFERITO"
 export const RIMUOVI_PREFERITO = "RIMUOVI_PREFERITO"
 export const SET_PREFERITI = "SET_PREFERITI"
+export const INVOICES = "INVOICES"
+
 
 export const selectTicket = (tickets) => ({
   type: SELECT_TICKET,
@@ -290,4 +292,33 @@ export const register = (data) => {
           throw error;
       });
     } 
+  };
+
+
+  export const getInvoices = () => {
+    return(dispatch) => {
+      fetch('http://localhost:3001/me/invoices', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero dei dati");
+        }
+      })
+      .then((data) => {
+        console.log("Invoices: ", data);
+        dispatch({
+          type: INVOICES,
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        console.error('Errore durante il recupero dei preferiti:', error);
+      });
+    };
   };

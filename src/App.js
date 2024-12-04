@@ -7,14 +7,12 @@ import MyHome from "./components/MyHome";
 import MyRegister from "./components/MyRegister";
 import { Col, Container, Row } from "react-bootstrap";
 import MyNav from "./components/MyNav";
-import MyLogin from "./components/MyLogin";
-import MyProfNav from "./components/MyProfNav";
-import MyDaily from "./components/MyDaily";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   filmsArray,
   filmsWhitoutProiezioni,
+  getInvoices,
   getPreferiti,
   meLogin,
   newsCinema,
@@ -22,6 +20,8 @@ import {
 import MyFilmSingle from "./components/MyFilmSingle";
 import MyCheck from "./components/MyCheck";
 import MyNews from "./components/MyNews";
+import MySingleTicket from "./components/MySingleTicket";
+import MyTickets from "./components/MyTickets";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +41,7 @@ function App() {
     dispatch(filmsWhitoutProiezioni());
     dispatch(newsCinema());
     dispatch(getPreferiti());
+    dispatch(getInvoices());
   }, []);
 
   const handleLoginSuccess = () => {
@@ -71,6 +72,8 @@ function App() {
           )}
           <Route path="/film/:id" element={<MyFilmSingle />} />
           <Route path="/checkout" element={<MyCheck />} />
+          <Route path="/tickets" element={<MyTickets />} />
+          <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
         </Routes>
         {!(
           location.pathname.includes("/film/") ||

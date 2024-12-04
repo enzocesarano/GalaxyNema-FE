@@ -274,3 +274,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: initial !important;
   }
 }
+
+.object-fit{
+  filter: brightness(0.3);
+}
+
+.myTick{
+  height: 20vh !important;
+}
+
+.text-ticket{
+  font-size: 1.3vh !important;
+}
+
+.text-ticketSmall{
+  font-size: 1.2vh !important;
+}
+
+.border-Pimary{
+  border-color: var(--primary-color) !important;
+}
