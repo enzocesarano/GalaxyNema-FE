@@ -24,7 +24,7 @@ export const selectProiezioneAction = (proiezione) => ({
 });
 
 export const register = (data) => {
-  return fetch("http://localhost:3001/auth/register", {
+  return fetch("https://galaxynema.onrender.com/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const register = (data) => {
 
 
   export const login = (data) => {
-    return fetch("http://localhost:3001/auth/login", {
+    return fetch("https://galaxynema.onrender.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const register = (data) => {
   
   export const meLogin = () => {
     return (dispatch) => {
-      fetch("http://localhost:3001/me", {
+      fetch("https://galaxynema.onrender.com/me", {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}` ,
         },
@@ -108,7 +108,7 @@ export const register = (data) => {
   export const filmsArray = (filters = {}) => {
     return (dispatch) => {
       const url =
-        "http://localhost:3001/films/filters?" +
+        "https://galaxynema.onrender.com/films/filters?" +
         Object.entries(filters)
           .map(
             ([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
@@ -140,7 +140,7 @@ export const register = (data) => {
     return (dispatch) => {
     
   
-      fetch("http://localhost:3001/films/senzaproiezioni", {
+      fetch("https://galaxynema.onrender.com/films/senzaproiezioni", {
 
       })
         .then((response) => {
@@ -165,7 +165,7 @@ export const register = (data) => {
 
   export const newsCinema = () => {
     return (dispatch) => {
-      fetch("http://localhost:3001/films/news", {
+      fetch("https://galaxynema.onrender.com/films/news", {
 
       })
         .then((response) => {
@@ -191,7 +191,7 @@ export const register = (data) => {
   
 
  /*  export const postInvoice = (data, id_proiezione) => {
-    return fetch("http://localhost:3001/me/invoices?id_proiezione=" + id_proiezione, {
+    return fetch("https://galaxynema.onrender.com/me/invoices?id_proiezione=" + id_proiezione, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -216,7 +216,7 @@ export const register = (data) => {
 
   export const postInvoice = (paymentData) => {
     console.log("Dati inviati al server:", JSON.stringify(paymentData)); 
-    return fetch("http://localhost:3001/api/stripe/create-checkout-session", {
+    return fetch("https://galaxynema.onrender.com/api/stripe/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -256,7 +256,7 @@ export const register = (data) => {
 
   export const getPreferiti = () => {
     return(dispatch) => {
-      fetch('http://localhost:3001/me/films/preferiti', {
+      fetch('https://galaxynema.onrender.com/me/films/preferiti', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -285,7 +285,7 @@ export const register = (data) => {
 
   export const addPreferiti = (film) => {
     return(dispatch) => {
-      fetch(`http://localhost:3001/me/films/${film.id_film}/preferiti`, {
+      fetch(`https://galaxynema.onrender.com/me/films/${film.id_film}/preferiti`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -311,7 +311,7 @@ export const register = (data) => {
 
   export const removePreferiti = (film) => {
     return(dispatch) => {
-      fetch(`http://localhost:3001/me/films/${film.id_film}/preferiti`, {
+      fetch(`https://galaxynema.onrender.com/me/films/${film.id_film}/preferiti`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -337,7 +337,7 @@ export const register = (data) => {
 
   export const getInvoices = () => {
     return(dispatch) => {
-      fetch('http://localhost:3001/me/invoices', {
+      fetch('https://galaxynema.onrender.com/me/invoices', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`,
