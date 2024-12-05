@@ -22,6 +22,7 @@ import MyCheck from "./components/MyCheck";
 import MyNews from "./components/MyNews";
 import MySingleTicket from "./components/MySingleTicket";
 import MyTickets from "./components/MyTickets";
+import { jwtDecode } from "jwt-decode";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +30,11 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (token) {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.sub;
+      console.log(userId);
       setIsAuthenticated(true);
       dispatch(meLogin());
     } else {

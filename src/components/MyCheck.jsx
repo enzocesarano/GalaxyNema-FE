@@ -17,6 +17,7 @@ const MyCheck = () => {
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
   const userId = decodedToken.sub;
+  console.log(userId)
 
   const selectedTickets =
     JSON.parse(

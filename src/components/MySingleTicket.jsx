@@ -55,7 +55,7 @@ const MySingleTicket = () => {
           <div className="me-md-3 mb-2 mb-xl-0">
             <QRCodeSVG
               value={ticket.id_ticket}
-              bgColor="#212529"
+              bgColor="#000000"
               fgColor="#b4d429"
             />
           </div>
