@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
+import { useNavigate } from "react-router-dom"; 
 import { register } from "../redux/actions";
 import MyHero from "./MyHero";
 import Carousel from "react-multi-carousel";

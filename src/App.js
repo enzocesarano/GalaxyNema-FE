@@ -8,7 +8,7 @@ import MyRegister from "./components/MyRegister";
 import { Col, Container, Row } from "react-bootstrap";
 import MyNav from "./components/MyNav";
 import { useState, useEffect } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   filmsArray,
   filmsWhitoutProiezioni,
@@ -26,7 +26,6 @@ import MyTickets from "./components/MyTickets";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -79,8 +78,13 @@ function App() {
           location.pathname.includes("/film/") ||
           location.pathname.includes("/checkout")
         ) && (
-          <Col className={`p-0 ps-xl-5 d-flex flex-column justify-content-between h-100 overflow-card mb-5 ${(location.pathname.includes("/news")) ? "col-12 col-xl-10" : "col-12 col-xl-4"
-          }`}>
+          <Col
+            className={`p-0 ps-xl-5 d-flex flex-column justify-content-between h-100 overflow-card mb-5 ${
+              location.pathname.includes("/news")
+                ? "col-12 col-xl-10"
+                : "col-12 col-xl-4"
+            }`}
+          >
             <MyNews />
           </Col>
         )}
@@ -90,4 +94,3 @@ function App() {
 }
 
 export default App;
-

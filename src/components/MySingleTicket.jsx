@@ -18,11 +18,11 @@ const MySingleTicket = () => {
       dispatch(getInvoices());
       try {
         const savedProiezione = await JSON.parse(localStorage.getItem("selectedProiezione"));
-        console.log("Dati recuperati da localStorage:", savedProiezione);
+        ("Dati recuperati da localStorage:", savedProiezione);
         if (savedProiezione) {
           setProiezione(savedProiezione);
         } else {
-          console.log("Proiezione non trovata nel localStorage");
+          ("Proiezione non trovata nel localStorage");
         }
       } catch (error) {
         console.error("Errore nel recupero della proiezione dal localStorage", error);

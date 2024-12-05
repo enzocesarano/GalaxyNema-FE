@@ -3,6 +3,7 @@ import { Col, Form, Row, Button, Alert, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { filmsArray, postInvoice } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const MyCheck = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,9 @@ const MyCheck = () => {
   );
 
   const selectedFilm = JSON.parse(localStorage.getItem("selectedFilm"));
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.sub;
 
   const selectedTickets =
     JSON.parse(
@@ -22,6 +26,8 @@ const MyCheck = () => {
     ) || [];
 
   const [invoiceData, setInvoiceData] = useState({
+    id_proiezione: selectedProiezione.id_proiezione,
+    id_utente: userId,
     via: "",
     civico: "",
     cap: "",
@@ -39,13 +45,16 @@ const MyCheck = () => {
       : basePrice * priceMultiplier;
 
   const [ticketData, setTicketData] = useState(
-    selectedTickets.map((seat) => ({
-      nome: "",
-      cognome: "",
-      data_nascita: "",
-      postoASedere: seat,
-      prezzo: calculatePrice(seat.split(" ")[0]),
-    }))
+    selectedTickets.map((seat) => {
+      const [fila, numeroPosto] = seat.split(" ");
+      return {
+        nome: "",
+        cognome: "",
+        data_nascita: "",
+        postoASedere: { fila, numeroPosto },
+        prezzo: calculatePrice(fila),
+      };
+    })
   );
 
   const totalAmount = ticketData.reduce(
@@ -151,24 +160,26 @@ const MyCheck = () => {
     setErrorMessage(null);
     setSuccessMessage(null);
 
-    const jsonData = {
-      ...invoiceData,
+    const paymentDTO = {
+      id_proiezione: invoiceData.id_proiezione,
+      id_utente: userId,
+      via: invoiceData.via,
+      civico: invoiceData.civico,
+      cap: invoiceData.cap,
+      comune: invoiceData.comune,
+      provincia: invoiceData.provincia,
       ticket: ticketData.map((ticket) => ({
         nome: ticket.nome,
         cognome: ticket.cognome,
         data_nascita: ticket.data_nascita,
-        postoASedere: {
-          fila: ticket.postoASedere.split(" ")[0],
-          numeroPosto: ticket.postoASedere.split(" ")[1],
-        },
+        postoASedere: ticket.postoASedere,
+        price: ticket.prezzo,
       })),
     };
 
     try {
-      const response = await postInvoice(
-        jsonData,
-        selectedProiezione.id_proiezione
-      );
+      const response = await postInvoice(paymentDTO);
+
       setSuccessMessage("Acquisto completato con successo!");
       localStorage.removeItem(
         `selectedTickets_${selectedProiezione.id_proiezione}`
@@ -185,9 +196,15 @@ const MyCheck = () => {
   };
 
   return (
-    <Col className="col-12 col-xl-10 rounded-4 h-100  position-relative " >
-      <Image src={selectedFilm.backdrop_url} className="w-100 h-100 rounded-4 mb-4 background-image object-fit-cover d-none d-xl-block" />
-      <Image src={selectedFilm.backdrop_url} className="w-100 h-100 rounded-4 mb-4 d-xl-none" />
+    <Col className="col-12 col-xl-10 rounded-4 h-100  position-relative ">
+      <Image
+        src={selectedFilm.backdrop_url}
+        className="w-100 h-100 rounded-4 mb-4 background-image object-fit-cover d-none d-xl-block"
+      />
+      <Image
+        src={selectedFilm.backdrop_url}
+        className="w-100 h-100 rounded-4 mb-4 d-xl-none"
+      />
       <Row className="p-0 p-xl-4 m-0 h-100 position-absolute w-100 start-0 top-0 schermoSmallCheck">
         <Col className="col-12 col-xl-6 overflow-card h-100 ">
           <h2 className="text-secondary fw-bold fs-5">Dettagli dei Tickets</h2>
@@ -195,8 +212,8 @@ const MyCheck = () => {
           {ticketData.map((ticket, index) => (
             <div key={index} className="mb-4">
               <h4 className="text-secondary fs-6">
-                Fila: {ticket.postoASedere.split(" ")[0]} - Posto:{" "}
-                {ticket.postoASedere.split(" ")[1]} - Prezzo: €{" "}
+                Fila: {ticket.postoASedere.fila} - Posto:{" "}
+                {ticket.postoASedere.numeroPosto} - Prezzo: €{" "}
                 {ticket.prezzo.toFixed(2)}
               </h4>
               <Form>

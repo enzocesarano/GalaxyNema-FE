@@ -190,7 +190,7 @@ export const register = (data) => {
   
   
 
-  export const postInvoice = (data, id_proiezione) => {
+ /*  export const postInvoice = (data, id_proiezione) => {
     return fetch("http://localhost:3001/me/invoices?id_proiezione=" + id_proiezione, {
       method: "POST",
       headers: {
@@ -212,7 +212,47 @@ export const register = (data) => {
         console.error("Errore durante l'acquisto:", error.message);
         throw error;
       });
+  }; */
+
+  export const postInvoice = (paymentData) => {
+    console.log("Dati inviati al server:", JSON.stringify(paymentData)); 
+    return fetch("http://localhost:3001/api/stripe/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((errorText) => {
+            console.error("Errore nella risposta:", errorText);
+            try {
+              const errorData = JSON.parse(errorText);
+              throw errorData;
+            } catch (e) {
+              throw new Error(errorText || "Errore sconosciuto");
+            }
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Risposta da Stripe:", data);
+        if (data.url) {
+          console.log("Reindirizzando a:", data.url);
+          window.location.href = data.url;
+        }
+      })
+      .catch((error) => {
+        console.error("Errore durante il processo di pagamento:", error.message || error);
+        alert(error.error || "Errore durante il processo di pagamento. Riprova.");
+        throw error;
+      });
   };
+  
+  
+  
 
   export const getPreferiti = () => {
     return(dispatch) => {
