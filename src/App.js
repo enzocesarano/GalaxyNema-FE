@@ -23,6 +23,7 @@ import MyNews from "./components/MyNews";
 import MySingleTicket from "./components/MySingleTicket";
 import MyTickets from "./components/MyTickets";
 import { jwtDecode } from "jwt-decode";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
 
@@ -79,16 +80,18 @@ function App() {
           <Route path="/checkout" element={<MyCheck />} />
           <Route path="/tickets" element={<MyTickets />} />
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
+          <Route path="/administrator-panel" element={<AdminPanel />} />
         </Routes>
         {!(
           location.pathname.includes("/film/") ||
-          location.pathname.includes("/checkout")
+          location.pathname.includes("/checkout") ||
+          location.pathname.includes("/administrator-panel")
         ) && (
           <Col
-            className={`p-0 ps-xl-5 d-flex flex-column justify-content-between h-100 overflow-card mb-5 ${
+            className={`p-0 ps-xl-5 flex-column justify-content-between h-100 overflow-card mb-5 ${
               location.pathname.includes("/news")
                 ? "col-12 col-xl-10"
-                : "col-12 col-xl-4"
+                : "col-12 col-xl-4 d-none d-xl-flex"
             }`}
           >
             <MyNews />

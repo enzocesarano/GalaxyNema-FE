@@ -71,6 +71,17 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
           <i className="bi bi-newspaper m-0 me-xl-2"></i>
           <span className="d-none d-xl-inline">News</span>
         </Link>
+        {logged.role === "ADMIN" && isAuthenticated && (
+          <Link
+            to="/administrator-panel"
+            className={`nav-link fw-bold p-2 px-3 rounded-4 w-auto ${
+              isActive("/administrator-panel") ? "active" : "text-secondary"
+            }`}
+          >
+            <i className="bi bi-person-vcard-fill m-0 me-xl-2"></i>
+            <span className="d-none d-xl-inline">Pannello Admin</span>
+          </Link>
+        )}
         {!isAuthenticated ? (
           <Link
             className="loginbutton p-2 rounded-4 active px-3 d-xl-none"
@@ -91,7 +102,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         )}
       </div>
 
-      <div className={`mt-4 m-auto ${showLogin || "d-none d-xl-block "}`}>
+      <div className={` m-auto m-xl-0 mt-4 mt-xl-4 ${showLogin || "d-none d-xl-block "}`}>
         {isAuthenticated ? (
           <MyProfNav onLogout={onLogout} />
         ) : (
