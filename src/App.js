@@ -26,7 +26,7 @@ import { jwtDecode } from "jwt-decode";
 
 function App() {
   useEffect(() => {
-    const APP_URL = "https://galaxynema.onrender.com";
+    const APP_URL = "https://galaxynema.onrender.com/me";
     const sendPing = () => {
         fetch(APP_URL)
             .then(response => console.log(`Ping inviato! Status: ${response.status}`))
