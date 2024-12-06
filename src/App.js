@@ -25,16 +25,6 @@ import MyTickets from "./components/MyTickets";
 import { jwtDecode } from "jwt-decode";
 
 function App() {
-  useEffect(() => {
-    const APP_URL = "https://galaxynema.onrender.com/me";
-    const sendPing = () => {
-        fetch(APP_URL)
-            .then(response => console.log(`Ping inviato! Status: ${response.status}`))
-            .catch(error => console.error(`Errore nel ping: ${error}`));
-    };
-    const intervalId = setInterval(sendPing, 49 * 1000);
-    return () => clearInterval(intervalId);
-}, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
