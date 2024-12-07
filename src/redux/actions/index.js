@@ -11,6 +11,7 @@ export const AGGIUNGI_PREFERITO = "GGIUNGI_PREFERITO"
 export const RIMUOVI_PREFERITO = "RIMUOVI_PREFERITO"
 export const SET_PREFERITI = "SET_PREFERITI"
 export const INVOICES = "INVOICES"
+export const UPDATE_USER = "UPDATE_USER"
 
 
 export const selectTicket = (tickets) => ({
@@ -103,6 +104,71 @@ export const register = (data) => {
         });
     };
   };
+
+
+  export const meUpdate = (data) => {
+    return async (dispatch) => {
+      try {
+        const response = await fetch("https://galaxynema.onrender.com/me", {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw errorData;
+        }
+  
+        const updatedData = await response.json();
+        console.log("Dati aggiornati:", updatedData);
+        dispatch({
+          type: UPDATE_USER,
+          payload: updatedData,
+        });
+  
+        return updatedData;
+      } catch (err) {
+        console.log("Errore nell'aggiornamento dei dati dell'utente:", err);
+        throw err;
+      }
+    };
+  };
+
+  export const updateAvatar = (avatarFile) => {
+    const formData = new FormData();
+    formData.append("avatar", avatarFile);
+  
+    return fetch("https://galaxynema.onrender.com/me/avatar", {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw errorData;
+          });
+        }
+        return response.text();
+      })
+      .then((updatedAvatarUrl) => {
+        return updatedAvatarUrl;
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiornamento dell'avatar:", error);
+        throw new Error(error.message);
+      });
+  };
+  
+  
+  
+  
   
 
   export const filmsArray = (filters = {}) => {

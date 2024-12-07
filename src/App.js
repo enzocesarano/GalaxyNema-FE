@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "react-multi-carousel/lib/styles.css";
 import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import MyHome from "./components/MyHome";
 import MyRegister from "./components/MyRegister";
 import { Col, Container, Row } from "react-bootstrap";
@@ -24,9 +24,10 @@ import MySingleTicket from "./components/MySingleTicket";
 import MyTickets from "./components/MyTickets";
 import { jwtDecode } from "jwt-decode";
 import AdminPanel from "./components/AdminPanel";
+import ProfiloUtente from "./components/ProfiloUtente";
 
 function App() {
-
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
 
@@ -56,6 +57,10 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    dispatch({
+      type: "LOGOUT",
+    });
+    navigate("/");
     setIsAuthenticated(false);
   };
 
@@ -81,6 +86,7 @@ function App() {
           <Route path="/tickets" element={<MyTickets />} />
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
           <Route path="/administrator-panel" element={<AdminPanel />} />
+          <Route path="/me" element={<ProfiloUtente />} />
         </Routes>
         {!(
           location.pathname.includes("/film/") ||

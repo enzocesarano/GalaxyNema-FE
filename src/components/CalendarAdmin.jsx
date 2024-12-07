@@ -68,7 +68,7 @@ const CalendarAdmin = () => {
         endAccessor="end"
         views={["month", "week", "day"]}
         defaultView="week"
-        min={new Date().setHours(8, 0, 0)}
+        min={new Date().setHours(10, 0, 0)}
         step={120}
         timeslots={1}
         components={{

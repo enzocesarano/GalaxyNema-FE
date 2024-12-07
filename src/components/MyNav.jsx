@@ -90,7 +90,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
             <i className="bi bi-box-arrow-in-right "></i>
           </Link>
         ) : (
-          <Link className="p-1 rounded-4 px-3 d-xl-none">
+          <Link to="/me" className="p-1 rounded-4 px-3 d-xl-none">
             <div className="w-10">
               <Image
                 src={logged.avatar}

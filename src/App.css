@@ -6,6 +6,12 @@
   --primary-color: #b4d429;
 }
 
+.bg-var {
+  background-color: var(--primary-color) !important;
+}
+
+
+
 .nav-link {
   transition-duration: 0.2s !important;
 }
@@ -373,4 +379,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .borderColor{
   border-color: var(--primary-color) !important;
+}
+
+ .rbc-off-range-bg{
+  background-color: #6c757d50 !important;
 }

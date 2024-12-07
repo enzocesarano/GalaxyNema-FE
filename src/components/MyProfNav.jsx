@@ -1,5 +1,6 @@
 import { Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MyProfNav = ({ onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
@@ -7,11 +8,13 @@ const MyProfNav = ({ onLogout }) => {
   return (
     <div className="d-none d-xl-flex fs-5 align-items-center ">
       <div className="w-10 me-3">
-        <Image
-          src={logged.avatar}
-          alt="Profile"
-          className="imageProfile w-100 h-100 object-fit-cover rounded-circle"
-        />
+        <Link to="/me">
+          <Image
+            src={logged.avatar}
+            alt="Profile"
+            className="imageProfile w-100 h-100 object-fit-cover rounded-circle"
+          />
+        </Link>
       </div>
 
       <p className="text-secondary p-0 m-0 me-3">{logged.nome}</p>
@@ -19,7 +22,7 @@ const MyProfNav = ({ onLogout }) => {
 
       <i
         className="bi bi-box-arrow-right text-danger cursor-pointer"
-        onClick={onLogout} 
+        onClick={onLogout}
       ></i>
     </div>
   );
