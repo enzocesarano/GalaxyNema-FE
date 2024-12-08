@@ -32,30 +32,27 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
-    const initializeData = async () => {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-      if (token) {
-        const decodedToken = jwtDecode(token);
-        setIsAuthenticated(true);
-        dispatch(meLogin());
-      }
-      await Promise.all([
-        dispatch(filmsArray()),
-        dispatch(filmsWhitoutProiezioni()),
-        dispatch(newsCinema()),
-        dispatch(getPreferiti()),
-        dispatch(getInvoices()),
-      ]);
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.sub;
+      console.log(userId);
+      setIsAuthenticated(true);
+      dispatch(meLogin());
+    } else {
+      setIsAuthenticated(false);
+    }
 
-      setLoading(false);
-    };
-
-    initializeData();
-  }, [dispatch]);
+    dispatch(filmsArray());
+    dispatch(filmsWhitoutProiezioni());
+    dispatch(newsCinema());
+    dispatch(getPreferiti());
+    dispatch(getInvoices());
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
