@@ -8,10 +8,6 @@ const ProfiloUtente = ({ onLogout }) => {
   const dispatch = useDispatch();
   const logged = useSelector((state) => state.loginMe.loginMe);
 
-  useEffect(() => {
-    dispatch(meLogin());
-  }, [dispatch]);
-
   const [initialFormData, setInitialFormData] = useState({
     nome: logged.nome,
     cognome: logged.cognome,
@@ -94,8 +90,9 @@ const ProfiloUtente = ({ onLogout }) => {
     const isValid = validateForm();
 
     if (isValid) {
+      setLoading(true);
       try {
-        setLoading(true);
+        
         dispatch(meUpdate(formData));
         dispatch(meLogin());
 
