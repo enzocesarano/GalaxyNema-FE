@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Col, Row, Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { meLogin, meUpdate, updateAvatar } from "../redux/actions";
+import { Link } from "react-router-dom";
 
-const ProfiloUtente = () => {
+const ProfiloUtente = ({ onLogout }) => {
   const dispatch = useDispatch();
   const logged = useSelector((state) => state.loginMe.loginMe);
 
-    useEffect(() => {
-        dispatch(meLogin())
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(meLogin());
+  }, [dispatch]);
 
   const [initialFormData, setInitialFormData] = useState({
     nome: logged.nome,
@@ -95,8 +96,8 @@ const ProfiloUtente = () => {
     if (isValid) {
       try {
         setLoading(true);
-         dispatch(meUpdate(formData));
-         dispatch(meLogin());
+        dispatch(meUpdate(formData));
+        dispatch(meLogin());
 
         setInitialFormData(formData);
         setSuccessMessage("Profilo aggiornato con successo!");
@@ -130,7 +131,7 @@ const ProfiloUtente = () => {
       try {
         await updateAvatar(avatarFile);
         dispatch(meLogin());
-        setAvatarModalShow(false); 
+        setAvatarModalShow(false);
         setSuccessMessage("Avatar aggiornato con successo!");
       } catch (error) {
         setErrors({ general: error.message });
@@ -139,8 +140,6 @@ const ProfiloUtente = () => {
       }
     }
   };
-  
- 
 
   const isFormModified =
     JSON.stringify(formData) !== JSON.stringify(initialFormData);
@@ -148,7 +147,7 @@ const ProfiloUtente = () => {
   const isFormValid = isFormModified && Object.keys(errors).length === 0;
 
   return (
-    <Col className="col-12 col-xl-6 px-3 vh-100 mb-3">
+    <Col className="col-12 col-xl-6 m-0 px-2 mb-5">
       <div className="text-center mb-4">
         <img
           src={logged.avatar || "default-avatar.png"}
@@ -162,7 +161,7 @@ const ProfiloUtente = () => {
         <h3 className="text-white mt-2">{formData.username}</h3>
       </div>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className=" p-0 m-0 mb-3">
         {[
           { field: "nome" },
           { field: "cognome" },
@@ -171,7 +170,7 @@ const ProfiloUtente = () => {
           { field: "telefono" },
           { field: "data_nascita", type: "date" },
         ].map(({ field, type }) => (
-          <Form.Group as={Row} key={field} className="mb-3">
+          <Form.Group as={Row} key={field} className="p-0 m-0 mb-3" >
             <Col className="p-0 m-0 me-2">
               <Form.Control
                 type={type || "text"}
@@ -227,6 +226,13 @@ const ProfiloUtente = () => {
         )}
       </Form>
 
+      <div className="d-flex justify-content-center d-xl-none mb-4">
+        <div>
+          <Link className="nav-link fw-bold p-2 px-3 rounded-4 w-auto text-danger" onClick={onLogout}>Logout
+          </Link>
+        </div>
+      </div>
+
       <Modal show={avatarModalShow} onHide={() => setAvatarModalShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Cambia Avatar</Modal.Title>
@@ -244,9 +250,6 @@ const ProfiloUtente = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setAvatarModalShow(false)}>
-            Annulla
-          </Button>
           <Button
             variant="primary"
             onClick={handleAvatarSubmit}

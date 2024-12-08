@@ -86,7 +86,7 @@ function App() {
           <Route path="/tickets" element={<MyTickets />} />
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
           <Route path="/administrator-panel" element={<AdminPanel />} />
-          <Route path="/me" element={<ProfiloUtente />} />
+          <Route path="/me" element={<ProfiloUtente isAuthenticated={isAuthenticated}  onLogout={handleLogout}/>} />
         </Routes>
         {!(
           location.pathname.includes("/film/") ||
