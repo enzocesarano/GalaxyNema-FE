@@ -5,10 +5,14 @@ import MyProfNav from "./MyProfNav";
 import MyLogin from "./MyLogin";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
   const location = useLocation();
+  const token = localStorage.getItem("token")
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.sub;
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -91,7 +95,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
             <i className="bi bi-box-arrow-in-right "></i>
           </Link>
         ) : (
-          <Link to="/me" className="p-1 rounded-4 px-3 d-xl-none">
+          <Link to={`/me/${userId}`} className="p-1 rounded-4 px-3 d-xl-none">
             <div className="w-10">
               <Image
                 src={logged.avatar}
