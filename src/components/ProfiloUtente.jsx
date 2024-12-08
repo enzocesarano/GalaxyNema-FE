@@ -228,7 +228,7 @@ const ProfiloUtente = ({ onLogout }) => {
 
       <div className="d-flex justify-content-center d-xl-none mb-4">
         <div>
-          <Link className="nav-link fw-bold p-2 px-3 rounded-4 w-auto text-danger" onClick={onLogout}>Logout
+          <Link to="/" className="nav-link fw-bold p-2 px-3 rounded-4 w-auto text-danger" onClick={onLogout}>Logout
           </Link>
         </div>
       </div>
