@@ -11,8 +11,11 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
   const location = useLocation();
   const token = localStorage.getItem("token")
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.sub;
+  if(token){
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.sub;
+  }
+  
 
   const [showLogin, setShowLogin] = useState(false);
 
