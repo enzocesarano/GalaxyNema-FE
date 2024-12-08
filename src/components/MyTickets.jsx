@@ -1,3 +1,4 @@
+import React from "react";
 import { Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";

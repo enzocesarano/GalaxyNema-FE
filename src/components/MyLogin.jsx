@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -66,7 +67,7 @@ const MyLogin = ({ onLoginSuccess }) => {
         {errorMessage && (
           <p className="text-danger fs-small text-center mt-2">{errorMessage}</p>
         )}
-        <Button type="submit" className="w-100 p-1 mt-2 botton-check border-0 rounded-4 text-black fw-bold">
+        <Button type="submit" className="w-100 p-1 mt-2 button-check border-0 rounded-4 text-black fw-bold">
           Accedi
         </Button>
       </Form>

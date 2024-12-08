@@ -1,14 +1,18 @@
+import { jwtDecode } from "jwt-decode";
+import React from "react";
 import { Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MyProfNav = ({ onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
-
+  const token = localStorage.getItem("token")
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.sub;
   return (
     <div className="d-none d-xl-flex fs-5 align-items-center ">
       <div className="w-10 me-3">
-        <Link to="/me">
+        <Link to={`/me/${userId}`}>
           <Image
             src={logged.avatar}
             alt="Profile"

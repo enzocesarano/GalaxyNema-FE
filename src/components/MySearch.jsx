@@ -67,14 +67,14 @@ const MySearch = () => {
           <option value="dataUscita">Data di Uscita</option>
         </Form.Select>
         <Button
-        className="botton-check border-0 rounded-4 text-black fw-bold me-2 fs-small"
+        className="button-check border-0 rounded-4 text-black fw-bold me-2 fs-small"
         onClick={() => setShowFilters(!showFilters)}
       >
         Filtri
       </Button>
         <Button
           type="submit"
-          className="botton-check border-0 rounded-4 text-black fw-bold fs-small"
+          className="button-check border-0 rounded-4 text-black fw-bold fs-small"
         >
           Search
         </Button>

@@ -129,7 +129,7 @@ const MyDaily = ({ proiezione }) => {
               <div className="mb-2">
                 <Link
                   to={isAuthenticated && selectedTickets.length > 0 ? "/checkout" : ""}
-                  className={`btn botton-check border-0 rounded-4 fw-bold ${isCheckoutDisabled ? "text-danger disabled" : "text-black"}`}
+                  className={`btn button-check border-0 rounded-4 fw-bold ${isCheckoutDisabled ? "text-danger disabled" : "text-black"}`}
                   onClick={(e) => {
                     if (isCheckoutDisabled) {
                       e.preventDefault();

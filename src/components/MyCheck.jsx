@@ -356,7 +356,7 @@ const MyCheck = () => {
                 <Button
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="botton-check border-0 rounded-4 text-black fw-bold mt-2"
+                  className="button-check border-0 rounded-4 text-black fw-bold mt-2"
                 >
                   {isLoading ? "Caricamento..." : "Acquista"}
                 </Button>

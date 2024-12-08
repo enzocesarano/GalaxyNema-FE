@@ -1,11 +1,12 @@
+import React from "react";
 import { Image, Spinner } from "react-bootstrap";
 
 const MyHero = ({ senzaproiezioni, isLoading }) => {
   if (isLoading) {
     return (
       <div
-        className="mb-4 bg-dark rounded-4 position-relative d-flex justify-content-center align-items-center"
-        style={{ height: "20rem" }}
+        className="mb-4 bg-black rounded-4 position-relative d-flex justify-content-center align-items-center"
+        style={{ height: "32rem" }}
       >
         <Spinner animation="border" size="lg" variant="secondary" />
       </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { Col } from "react-bootstrap";
 import { QRCodeSVG } from "qrcode.react";
 import { useEffect, useState } from "react";

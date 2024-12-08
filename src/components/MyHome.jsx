@@ -1,3 +1,4 @@
+import React from "react";
 import MyHero from "./MyHero";
 import MyCards from "./MyCards";
 import { useSelector } from "react-redux";
@@ -10,7 +11,8 @@ const MyHome = () => {
   const senzaproiezioni = useSelector(
     (state) => state.senzaproiezioni.senzaproiezioni
   );
-  const isLoading = films.length === 0;
+  
+  const isLoading = !films.content || films.content.length === 0;
 
   const responsive = {
     superLargeDesktop: {
@@ -118,9 +120,7 @@ const MyHome = () => {
               removeArrowOnDeviceType={["tablet", "mobile"]}
             >
               {isLoading
-                ? Array.from({ length: 5 }).map((_, index) => (
-                    <MyCards key={index} isLoading={true} />
-                  ))
+                ? ""
                 : altriGeneri.map((film, index) => (
                     <MyCards key={index} film={film} />
                   ))}

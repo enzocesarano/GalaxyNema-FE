@@ -191,7 +191,7 @@ const ProfiloUtente = ({ onLogout }) => {
                 className={`rounded-4 fw-bold py-2 ${
                   editableField === field
                     ? "btn-danger border-0 text-light"
-                    : "botton-check border-0 text-black"
+                    : "button-check border-0 text-black"
                 }`}
                 onClick={() => handleEditClick(field)}
               >
@@ -208,7 +208,7 @@ const ProfiloUtente = ({ onLogout }) => {
         <div className="d-flex justify-content-end mt-4">
           <Button
             type="submit"
-            className={`botton-check border-0 text-black rounded-4 fw-bold px-4 ${
+            className={`button-check border-0 text-black rounded-4 fw-bold px-4 ${
               !isFormValid || loading ? "bg-secondary" : ""
             }`}
             disabled={!isFormValid || loading}

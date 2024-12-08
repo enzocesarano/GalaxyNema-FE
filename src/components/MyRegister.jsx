@@ -261,7 +261,7 @@ const MyRegister = () => {
 
             <div className="d-flex justify-content-end">
               <Button
-                className="botton-check border-0 rounded-4 text-black fw-bold"
+                className="button-check border-0 rounded-4 text-black fw-bold"
                 type="submit"
               >
                 Registrati

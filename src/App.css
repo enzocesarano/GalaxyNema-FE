@@ -197,12 +197,12 @@
   transition-duration: 0.3s;
 }
 
-.botton-check {
+.button-check {
   background-color: var(--primary-color);
   transition-duration: 0.3s !important;
 }
 
-.botton-check:hover {
+.button-check:hover {
   border-color: var(--primary-color) !important;
   box-shadow: 0 0 10px var(--primary-color);
   background-color: var(--primary-color) !important;

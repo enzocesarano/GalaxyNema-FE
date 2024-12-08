@@ -1,4 +1,5 @@
-import { Button, Image, Navbar } from "react-bootstrap";
+import React from "react";
+import { Image, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import MyProfNav from "./MyProfNav";
 import MyLogin from "./MyLogin";
