@@ -3,12 +3,12 @@
   "name": "GALAXYNEMA PROJECT",
   "icons": [
     {
-      "src": "Icon-03.png",
+      "src": "Icon-02.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "Icon-03.png",
+      "src": "Icon-02.png",
       "sizes": "512x512",
       "type": "image/png"
     }
