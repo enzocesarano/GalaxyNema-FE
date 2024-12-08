@@ -10,12 +10,18 @@ import { jwtDecode } from "jwt-decode";
 const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
   const location = useLocation();
-  const token = localStorage.getItem("token")
-  if(token){
-    const decodedToken = jwtDecode(token);
-    const userId = decodedToken.sub;
+
+  const token = localStorage.getItem("token");
+  let userId = null;
+
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token);
+      userId = decodedToken.sub;
+    } catch (error) {
+      console.error("Errore nel decodificare il token:", error);
+    }
   }
-  
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -110,7 +116,11 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         )}
       </div>
 
-      <div className={` m-auto m-xl-0 mt-4 mt-xl-4 ${showLogin || "d-none d-xl-block "}`}>
+      <div
+        className={` m-auto m-xl-0 mt-4 mt-xl-4 ${
+          showLogin || "d-none d-xl-block "
+        }`}
+      >
         {isAuthenticated ? (
           <MyProfNav onLogout={onLogout} />
         ) : (
