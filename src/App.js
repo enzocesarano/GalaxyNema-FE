@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      {loading ? ( <LoadingScreen /> ) : <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
+      <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
         <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-hidden">
           <Col className="col-xl-2 col-12 d-xl-flex p-0 pe-xl-5 flex-column justify-content-between fixed-bottomNav bg-dark">
             <MyNav
@@ -108,7 +108,7 @@ function App() {
             </Col>
           )}
         </Row>
-      </Container>}
+      </Container>
       
     </>
   );

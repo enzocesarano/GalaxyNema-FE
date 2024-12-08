@@ -8,8 +8,7 @@ const LoadingScreen = () => {
         <img
           src="/logo.svg"
           alt="Logo"
-          className="mb-4"
-          style={{ width: "150px", height: "150px" }}
+          className="mb-4 w-75"
         />
         <Spinner animation="border" variant="light" />
       </div>
