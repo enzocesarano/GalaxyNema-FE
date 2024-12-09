@@ -18,11 +18,11 @@ const MyFavorites = ({ films }) => {
     for (let i = 0; i < 5; i++) {
       if (i < vote2) {
         starArray.push(
-          <i key={i} className="bi bi-star-fill text-warning fs-small me-1"></i>
+          <i key={i} className="bi bi-star-fill text-warning textStar me-1"></i>
         );
       } else {
         starArray.push(
-          <i key={i} className="bi bi-star text-warning fs-small me-1"></i>
+          <i key={i} className="bi bi-star text-warning textStar me-1"></i>
         );
       }
     }
@@ -37,9 +37,9 @@ const MyFavorites = ({ films }) => {
   };
 
   return (
-    <Col className="col-12 col-xl-6 p-0 m-0 h-100 overflow-card mb-5">
+    <Col className="col-12 col-xl-6 p-0 m-0 h-100 colFavorite overflow-card  mb-5">
       {films.map((film) => (
-        <div key={film.id_film} className="m-2">
+        <div key={film.id_film} className="m-2 mb-3 border border-0 border-bottom border-secondary">
           <Link
             to={`/film/${film.id_film}`}
             className="text-decoration-none"
@@ -62,24 +62,24 @@ const MyFavorites = ({ films }) => {
               <Card.Body className="text-secondary w-75 m-0 p-0 flex-column justify-content-between">
                 <div className="d-flex px-md-5 mb-4">
                   <div>
-                    <p className="text-light fs-4 m-0 mb-1 me-3">
+                    <p className="textTitle m-0 mb-1 me-3">
                       {film.titolo}{" "}
                     </p>
-                    <p className="text-light fs-small m-0">{film.genere}</p>
-                    <div className="d-none d-sm-flex align-items-center my-2 pb-3 border-bottom">
+                    <p className="textGen m-0">{film.genere}</p>
+                    <div className="d-flex  align-items-center p-0 m-0 my-xl-2 pb-xl-3">
                       {renderStars(film.voteAverage)}
                     </div>
 
-                    <div className="w-100">
-                      <p className="text-light fs-6 m-0">
+                    <div className="w-100 d-none d-lg-block">
+                      <p className="fs-6 m-0">
                         {expandedDescriptions[film.id_film]
                           ? film.descrizione
-                          : `${film.descrizione.slice(0, 50)}...`}
+                          : `${film.descrizione.slice(0, 150)}...`}
                       </p>
                     </div>
 
                     <button
-                      className="btn btn-link text-warning p-0 mt-2"
+                      className="btn btn-link d-none d-lg-block text-warning p-0 mt-2"
                       onClick={(e) => {
                         e.preventDefault();
                         toggleDescription(film.id_film);

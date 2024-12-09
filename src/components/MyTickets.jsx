@@ -46,7 +46,7 @@ const MyTickets = () => {
   };
 
   return (
-    <Col className="col-12 col-xl-6 p-1 h-100 vh-100 overflow-card mb-4 mb-xl-0">
+    <Col className="col-12 col-xl-6 p-1 h-100 colFavorite overflow-card mb-5 mb-xl-0">
       {isLoading ? (
         <p className="text-secondary">Non hai ancora tickets!</p>
       ) : (

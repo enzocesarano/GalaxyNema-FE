@@ -395,3 +395,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .react-multi-carousel-list {
   touch-action: pan-y !important;
 }
+
+@media (max-width: 1200px) {
+  .colFavorite{
+    height: 100vh !important;
+  }
+}
+
+.textTitle {
+  font-size: 2.3vh !important;
+}
+
+.textGen {
+  font-size: 1.5vh !important;
+}
+
+.textStar {
+  font-size: 1.8vh !important;
+}
