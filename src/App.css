@@ -10,6 +10,15 @@
   background-color: var(--primary-color) !important;
 }
 
+.mediaScreen{
+  width: 50vh !important;
+}
+
+@media(max-width: 1200px) {
+  .schermoPiccolo{
+    height: 100vh !important;
+  }
+}
 .nav-link {
   transition-duration: 0.2s !important;
 }

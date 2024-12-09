@@ -26,6 +26,7 @@ import { jwtDecode } from "jwt-decode";
 import AdminPanel from "./components/AdminPanel";
 import ProfiloUtente from "./components/ProfiloUtente";
 import LoadingPage from "./components/LoadingPage";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ function App() {
     </Container>
   ) : (
     <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
-      <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-hidden">
+      <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-card">
         <Col className="col-xl-2 col-12 d-xl-flex p-0 pe-xl-5 flex-column justify-content-between fixed-bottomNav bg-dark">
           <MyNav
             isAuthenticated={isAuthenticated}
@@ -96,6 +97,7 @@ function App() {
           <Route path="/tickets" element={<MyTickets />} />
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
           <Route path="/administrator-panel" element={<AdminPanel />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route
             path="/me/:id_utente"
             element={

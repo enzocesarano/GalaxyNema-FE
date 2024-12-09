@@ -73,7 +73,7 @@ const MyTickets = () => {
             <div
               key={invoice.id_invoice}
               className="myTick rounded-4 overflow-hidden mb-3 position-relative hero-hover cursor-pointer"
-              onClick={() => handleInvoiceClick(invoice.id_invoice)} // Gestisci il click qui
+              onClick={() => handleInvoiceClick(invoice.id_invoice)}
             >
               {associatedFilm && associatedProiezione ? (
                 <>

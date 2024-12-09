@@ -50,7 +50,7 @@ const MySingleTicket = () => {
   }
 
   return (
-    <Col className="col-12 col-xl-6 mb-5 mb-xl-0 vh-100">
+    <Col className="col-12 col-xl-6 mb-5 mb-xl-0 schermoPiccolo h-100 overflow-card">
       {invoice.ticket.map((ticket, index) => (
         <div key={index} className="w-100 text-center text-md-start d-md-flex justify-content-center justify-content-md-start align-items-center mb-4 border border-1 border-Pimary bg-black rounded-4 p-4">
           <div className="me-md-3 mb-2 mb-xl-0">
