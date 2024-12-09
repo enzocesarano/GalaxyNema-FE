@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col } from "react-bootstrap";
+import { Button, Col, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const NotFoundPage = () => {
@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <div className="d-flex h-75 justify-content-center align-items-center">
         <div className="text-center">
           <div className="w-100 mb-5 d-xl-none">
-            <img
+            <Image
               src="/logo.svg"
               alt="Galaxynema Logo"
               className="img-fluid w-100 "

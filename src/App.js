@@ -8,7 +8,7 @@ import MyRegister from "./components/MyRegister";
 import { Col, Container, Row } from "react-bootstrap";
 import MyNav from "./components/MyNav";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filmsArray,
   filmsWhitoutProiezioni,
@@ -25,6 +25,7 @@ import MyTickets from "./components/MyTickets";
 import { jwtDecode } from "jwt-decode";
 import AdminPanel from "./components/AdminPanel";
 import ProfiloUtente from "./components/ProfiloUtente";
+import LoadingPage from "./components/LoadingPage";
 
 function App() {
   const navigate = useNavigate();
@@ -64,9 +65,18 @@ function App() {
     setIsAuthenticated(false);
   };
 
+  const films = useSelector((state) => state.proiezioni.proiezioni);
+  const isLoading = !films.content || films.content.length === 0;
+
   const location = useLocation();
 
-  return (
+  return isLoading ? (
+    <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
+      <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-hidden">
+        <LoadingPage />
+      </Row>
+    </Container>
+  ) : (
     <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
       <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-hidden">
         <Col className="col-xl-2 col-12 d-xl-flex p-0 pe-xl-5 flex-column justify-content-between fixed-bottomNav bg-dark">
@@ -86,7 +96,15 @@ function App() {
           <Route path="/tickets" element={<MyTickets />} />
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
           <Route path="/administrator-panel" element={<AdminPanel />} />
-          <Route path="/me/:id_utente" element={<ProfiloUtente isAuthenticated={isAuthenticated}  onLogout={handleLogout}/>} />
+          <Route
+            path="/me/:id_utente"
+            element={
+              <ProfiloUtente
+                isAuthenticated={isAuthenticated}
+                onLogout={handleLogout}
+              />
+            }
+          />
         </Routes>
         {!(
           location.pathname.includes("/film/") ||
