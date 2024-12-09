@@ -1,3 +1,4 @@
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import CalendarAdmin from "./CalendarAdmin";
 import FilmsAdmin from "./FilmsAdmin";
@@ -5,10 +6,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
-  // Stato per determinare quale pannello mostrare
-  const [activePanel, setActivePanel] = useState("calendar"); // 'calendar' o 'films'
-
-  // Funzione per mostrare il pannello corrispondente
+  const [activePanel, setActivePanel] = useState("calendar");
   const renderPanel = () => {
     if (activePanel === "calendar") {
       return <CalendarAdmin />;

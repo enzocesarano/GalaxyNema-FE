@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "react-multi-carousel/lib/styles.css";
 import "./App.css";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import MyHome from "./components/MyHome";
 import MyRegister from "./components/MyRegister";
 import { Col, Container, Row } from "react-bootstrap";
@@ -44,6 +45,8 @@ function App() {
       console.log(userId);
       setIsAuthenticated(true);
       dispatch(meLogin());
+      dispatch(getPreferiti());
+      dispatch(getInvoices());
     } else {
       setIsAuthenticated(false);
     }
@@ -51,8 +54,7 @@ function App() {
     dispatch(filmsArray());
     dispatch(filmsWhitoutProiezioni());
     dispatch(newsCinema());
-    dispatch(getPreferiti());
-    dispatch(getInvoices());
+    
   }, []);
 
   const handleLoginSuccess = () => {
@@ -71,8 +73,6 @@ function App() {
   const films = useSelector((state) => state.proiezioni.proiezioni);
   const preferiti = useSelector((state) => state.preferiti.preferiti);
   const isLoading = !films.content || films.content.length === 0;
-
-  const location = useLocation();
 
   return isLoading ? (
     <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">

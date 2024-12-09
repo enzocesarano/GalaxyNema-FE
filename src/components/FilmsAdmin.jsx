@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector } from "react-redux";
 
 const FilmsAdmin = () => {
@@ -8,7 +9,6 @@ const FilmsAdmin = () => {
 
   return (
       <div className="films-admin h-100 overflow-card">
-
         <div className="text-secondary">
           <h3>Film con Proiezioni</h3>
           {films.content && films.content.length > 0 ? (

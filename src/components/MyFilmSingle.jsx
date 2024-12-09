@@ -214,7 +214,6 @@ const MyFilmSingle = () => {
           </div>
 
           <div className="mt-4">
-            {/* Carousel Sale */}
             <Carousel
               responsive={responsive}
               infinite={true}
@@ -233,7 +232,6 @@ const MyFilmSingle = () => {
               ))}
             </Carousel>
 
-            {/* Carousel Giorni */}
             {selectedSala && (
               <Carousel
                 responsive={responsive}
@@ -256,7 +254,6 @@ const MyFilmSingle = () => {
               </Carousel>
             )}
 
-            {/* Carousel Orari */}
             {selectedSala && selectedDay && (
               <Carousel
                 responsive={responsive}
@@ -325,7 +322,6 @@ const MyFilmSingle = () => {
               </div>
             </div>
           </div>
-          {/* Carousel Sale */}
           <Carousel
             responsive={responsive}
             infinite={true}
@@ -344,7 +340,6 @@ const MyFilmSingle = () => {
             ))}
           </Carousel>
 
-          {/* Carousel Giorni */}
           {selectedSala && (
             <Carousel
               responsive={responsive}
@@ -367,7 +362,6 @@ const MyFilmSingle = () => {
             </Carousel>
           )}
 
-          {/* Carousel Orari */}
           {selectedSala && selectedDay && (
             <Carousel
               responsive={responsive}
