@@ -49,15 +49,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
           <i className="bi bi-house-fill m-0 me-xl-2"></i>
           <span className="d-none d-xl-inline">Home</span>
         </Link>
-        <Link
-          to="/movies"
-          className={`nav-link fw-bold p-2 px-3 rounded-4 w-auto ${
-            isActive("/movies") ? "active" : "text-secondary"
-          }`}
-        >
-          <i className="bi bi-film m-0 me-xl-2"></i>
-          <span className="d-none d-xl-inline">Movies</span>
-        </Link>
+        
         <Link
           to="/favorites"
           className={`nav-link fw-bold p-2 px-3 rounded-4 w-auto ${
@@ -84,6 +76,15 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         >
           <i className="bi bi-newspaper m-0 me-xl-2"></i>
           <span className="d-none d-xl-inline">News</span>
+        </Link>
+        <Link
+          to="/about-us"
+          className={`nav-link fw-bold p-2 px-3 rounded-4 w-auto ${
+            isActive("/about-us") ? "active" : "text-secondary"
+          }`}
+        >
+          <i className="bi bi-info-circle-fill m-0 me-xl-2"></i>
+          <span className="d-none d-xl-inline">About Us</span>
         </Link>
         {logged.role === "ADMIN" && isAuthenticated && (
           <Link

@@ -138,6 +138,10 @@ const ProfiloUtente = ({ onLogout }) => {
     }
   };
 
+  useEffect(() => {
+    dispatch(meLogin())
+  }, [dispatch])
+
   const isFormModified =
     JSON.stringify(formData) !== JSON.stringify(initialFormData);
 

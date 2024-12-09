@@ -1,5 +1,5 @@
-import { Card, Placeholder, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Importa Link
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const MyCards = ({ film }) => {
 

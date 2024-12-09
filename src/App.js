@@ -27,6 +27,8 @@ import AdminPanel from "./components/AdminPanel";
 import ProfiloUtente from "./components/ProfiloUtente";
 import LoadingPage from "./components/LoadingPage";
 import NotFoundPage from "./components/NotFoundPage";
+import AboutUs from "./components/AboutUs";
+import MyFavorite from "./components/MyFavorite";
 
 function App() {
   const navigate = useNavigate();
@@ -67,6 +69,7 @@ function App() {
   };
 
   const films = useSelector((state) => state.proiezioni.proiezioni);
+  const preferiti = useSelector((state) => state.preferiti.preferiti);
   const isLoading = !films.content || films.content.length === 0;
 
   const location = useLocation();
@@ -99,6 +102,8 @@ function App() {
           <Route path="/administrator-panel" element={<AdminPanel />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/news" element={<MyNews />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/favorites" element={<MyFavorite films={preferiti}/>} />
           <Route
             path="/me/:id_utente"
             element={
