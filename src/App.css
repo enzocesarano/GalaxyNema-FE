@@ -391,3 +391,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  .rbc-off-range-bg{
   background-color: #6c757d50 !important;
 }
+
+.react-multi-carousel-list {
+  touch-action: pan-y !important;
+}

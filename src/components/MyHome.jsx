@@ -95,6 +95,7 @@ const MyHome = () => {
               <Carousel
                 responsive={responsive}
                 infinite={true}
+
                 itemClass="m-1"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
               >
@@ -111,7 +112,7 @@ const MyHome = () => {
         })}
 
         {altriGeneri.length > 0 && (
-          <Col className="mb-4">
+          <Col className="mb-5">
             <h3 className="text-start text-uppercase text-secondary">Altri Generi</h3>
             <Carousel
               responsive={responsive}

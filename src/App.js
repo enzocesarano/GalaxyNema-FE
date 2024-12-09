@@ -79,7 +79,7 @@ function App() {
     </Container>
   ) : (
     <Container fluid className="container-fluid p-0 p-xl-4 bg-black m-0">
-      <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-card">
+      <Row className="bg-dark h-100 p-0 p-4 rounded-4 m-0 overflow-hidden">
         <Col className="col-xl-2 col-12 d-xl-flex p-0 pe-xl-5 flex-column justify-content-between fixed-bottomNav bg-dark">
           <MyNav
             isAuthenticated={isAuthenticated}
@@ -98,6 +98,7 @@ function App() {
           <Route path="/tickets/:id_invoice" element={<MySingleTicket />} />
           <Route path="/administrator-panel" element={<AdminPanel />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/news" element={<MyNews />} />
           <Route
             path="/me/:id_utente"
             element={
@@ -108,21 +109,8 @@ function App() {
             }
           />
         </Routes>
-        {!(
-          location.pathname.includes("/film/") ||
-          location.pathname.includes("/checkout") ||
-          location.pathname.includes("/administrator-panel")
-        ) && (
-          <Col
-            className={`p-0 ps-xl-5 flex-column justify-content-between h-100 overflow-card mb-5 ${
-              location.pathname.includes("/news")
-                ? "col-12 col-xl-10"
-                : "col-12 col-xl-4 d-none d-xl-flex"
-            }`}
-          >
-            <MyNews />
-          </Col>
-        )}
+
+        <MyNews />
       </Row>
     </Container>
   );
