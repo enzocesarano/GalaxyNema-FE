@@ -267,7 +267,7 @@ const FilmsAdmin = ({ onFilmSelect }) => {
         )}
       </div>
 
-      <Modal show={showModal} onHide={handleClose} size="lg">
+      <Modal show={showModal} onHide={handleClose} size="lg" dialogClassName="modal-dialog-centered">
         <Modal.Header closeButton className="bg-dark text-white border-0">
           {selectedFilm ? (
             <Modal.Title>Modifica Film {selectedFilm.id_film}</Modal.Title>
@@ -380,7 +380,7 @@ const FilmsAdmin = ({ onFilmSelect }) => {
         </Modal.Body>
         <Modal.Footer className="bg-dark border-0">
           <Button
-            className="button-check border-0 rounded-4 text-black fw-bold fs-small"
+            className="button-check border-0 rounded-4 text-black fw-bold fs-small mb-2"
             onClick={handleSaveChanges}
           >
             {selectedFilm?.id_film ? "Salva Modifiche" : "Aggiungi Film"}
