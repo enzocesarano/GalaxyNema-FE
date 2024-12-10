@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import MySearch from "./MySearch";
 import Carousel from "react-multi-carousel";
+import dayjs from "dayjs";
 
 const MyHome = () => {
   const films = useSelector((state) => state.proiezioni.proiezioni);
   const senzaproiezioni = useSelector(
     (state) => state.senzaproiezioni.senzaproiezioni
   );
-  
+
   const isLoading = !films.content || films.content.length === 0;
 
   const responsive = {
@@ -54,9 +55,18 @@ const MyHome = () => {
 
   const generi = ["AZIONE", "COMMEDIA", "DRAMMA", "FANTASY", "CRIME", "THRILLER", "HORROR"];
 
-  const altriGeneri = films.content
-    ? films.content.filter((film) => !generi.includes(film.genere))
+  const filterFilmsWithFutureProiezioni = films.content
+    ? films.content.filter((film) => {
+        const futureProiezioni = film.proiezioneList.filter((proiezione) =>
+          dayjs(proiezione.oraInizio).isAfter(dayjs())
+        );
+        return futureProiezioni.length > 0;
+      })
     : [];
+
+  const altriGeneri = filterFilmsWithFutureProiezioni.filter(
+    (film) => !generi.includes(film.genere)
+  );
 
   return (
     <Col className="col-12 col-xl-6 p-0 h-100 overflow-card">
@@ -83,9 +93,9 @@ const MyHome = () => {
       <MySearch />
       <Row className="p-0 m-0 flex-column">
         {generi.map((genere) => {
-          const filmsByGenre = films.content
-            ? films.content.filter((film) => film.genere === genere)
-            : [];
+          const filmsByGenre = filterFilmsWithFutureProiezioni.filter(
+            (film) => film.genere === genere
+          );
 
           if (filmsByGenre.length === 0) return null;
 
@@ -95,7 +105,6 @@ const MyHome = () => {
               <Carousel
                 responsive={responsive}
                 infinite={true}
-
                 itemClass="m-1"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
               >
