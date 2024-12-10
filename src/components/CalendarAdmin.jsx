@@ -17,11 +17,11 @@ moment.locale("it", {
 });
 
 const adjustTimezone = (dateString) => {
-    const date = moment(dateString);
-    return date.isValid() ? date.toDate() : new Date();
+  const date = moment(dateString);
+  return date.isValid() ? date.toDate() : new Date();
 };
 
-const CalendarAdmin = () => {
+const CalendarAdmin = ({ onProjectionSelect }) => {
   const localizer = momentLocalizer(moment); 
   const films = useSelector((state) => state.proiezioni.proiezioni);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +33,7 @@ const CalendarAdmin = () => {
   }, [films.content]);
 
   const NoAllDayPanel = () => null;
+
   const events =
     Array.isArray(films.content) && films.content.length > 0
       ? films.content.flatMap((film) => {
@@ -58,6 +59,13 @@ const CalendarAdmin = () => {
     return <div>Caricamento...</div>;
   }
 
+  const handleSelectEvent = (event) => {
+    onProjectionSelect({
+      proiezione: event.resource.proiezione,
+      film: event.resource,
+    });
+  };
+
   return (
     <div className="calendar-container h-100 overflow-card text-light">
       <Calendar
@@ -74,6 +82,7 @@ const CalendarAdmin = () => {
         components={{
             allDayPanel: NoAllDayPanel
           }}
+        onSelectEvent={handleSelectEvent}
       />
     </div>
   );

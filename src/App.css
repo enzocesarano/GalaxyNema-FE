@@ -413,3 +413,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .textStar {
   font-size: 1.8vh !important;
 }
+
+.btn-close {
+  display: none !important;
+}
+
+.modal-content {
+  background-color: #212529 !important;
+  border-radius: 24px !important;
+  overflow: hidden;
+}
+
+.table{
+  background-color: #212529 !important;
+
+}
