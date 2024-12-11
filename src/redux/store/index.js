@@ -8,6 +8,9 @@ import news from '../reducers/news';
 import { selectedProiezione } from '../reducers/selectedProiezione';
 import preferiti from '../reducers/preferiti';
 import { invoices } from '../reducers/myInvoices';
+import { newFilm } from '../reducers/newFilm';
+import { newProiezioni } from '../reducers/newProiezioni';
+import getSale from '../reducers/sale';
 
 const bigReducer = combineReducers({
     loginMe: loginMe,
@@ -19,6 +22,9 @@ const bigReducer = combineReducers({
     selectedProiezione: selectedProiezione,
     preferiti: preferiti,
     invoices: invoices,
+    newFilm: newFilm,
+    newProiezioni: newProiezioni,
+    getSale: getSale
 });
 
 const store = configureStore({

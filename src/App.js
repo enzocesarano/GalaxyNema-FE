@@ -15,6 +15,7 @@ import {
   filmsWhitoutProiezioni,
   getInvoices,
   getPreferiti,
+  getSale,
   meLogin,
   newsCinema,
 } from "./redux/actions";
@@ -54,6 +55,7 @@ function App() {
     dispatch(filmsArray());
     dispatch(filmsWhitoutProiezioni());
     dispatch(newsCinema());
+    dispatch(getSale());
     
   }, []);
 

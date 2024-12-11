@@ -219,6 +219,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.3);
 }
 
+input[type="date"]::-webkit-time-picker-indicator {
+  filter: invert(0.3);
+}
+
 .fs-small {
   font-size: small !important;
 }

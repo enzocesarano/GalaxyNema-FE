@@ -1,6 +1,13 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Form } from "react-bootstrap";
+import {
+  addFilm,
+  deleteFilm,
+  filmsArray,
+  filmsWhitoutProiezioni,
+  updateFilm,
+} from "../redux/actions";
 
 const FilmsAdmin = ({ onFilmSelect }) => {
   const films = useSelector((state) => state.proiezioni.proiezioni);
@@ -8,14 +15,34 @@ const FilmsAdmin = ({ onFilmSelect }) => {
     (state) => state.senzaproiezioni.senzaproiezioni
   );
 
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [filmToDelete, setFilmToDelete] = useState(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [genreFilter, setGenreFilter] = useState("");
 
-  const handleDelete = (filmId) => {
-    console.log("Cancellazione film con ID:", filmId);
+  const handleDelete = async () => {
+    if (filmToDelete) {
+      try {
+        console.log("Cancellazione film con ID:", filmToDelete.id_film);
+        await dispatch(deleteFilm(filmToDelete.id_film));
+        dispatch(filmsArray());
+        dispatch(filmsWhitoutProiezioni());
+        setShowDeleteModal(false);
+        setFilmToDelete(null);
+      } catch (error) {
+        console.error("Errore durante la cancellazione del film:", error);
+      }
+    }
+  };
+
+  const showDeleteConfirmation = (film) => {
+    setFilmToDelete(film);
+    setShowDeleteModal(true);
   };
 
   const handleEdit = (film) => {
@@ -42,8 +69,16 @@ const FilmsAdmin = ({ onFilmSelect }) => {
   };
 
   const handleSaveChanges = () => {
-    console.log("Salvataggio modifiche:", selectedFilm);
-    setShowModal(false);
+    if (selectedFilm) {
+      if (!selectedFilm.id_film) {
+         dispatch(addFilm(selectedFilm));
+      } else {
+        dispatch(updateFilm(selectedFilm));
+      }
+      
+      setShowModal(false);
+      setSelectedFilm(null);
+    }
   };
 
   const handleChange = (e) => {
@@ -179,7 +214,7 @@ const FilmsAdmin = ({ onFilmSelect }) => {
                       </button>
                       <button
                         className="btn btn-sm btn-outline-danger me-2"
-                        onClick={() => handleDelete(film.id_film)}
+                        onClick={() => showDeleteConfirmation(film)}
                       >
                         <i className="bi bi-trash"></i>
                       </button>
@@ -252,10 +287,16 @@ const FilmsAdmin = ({ onFilmSelect }) => {
                       <i className="bi bi-pencil"></i>
                     </button>
                     <button
-                      className="btn btn-sm btn-outline-danger"
-                      onClick={() => handleDelete(film.id_film)}
+                      className="btn btn-sm btn-outline-danger me-2"
+                      onClick={() => showDeleteConfirmation(film)}
                     >
                       <i className="bi bi-trash"></i>
+                    </button>
+                    <button
+                        className="btn btn-sm btn-outline-info"
+                        onClick={() => handleViewProjections(film)}
+                      >
+                        <i className="bi bi-camera-reels"></i>
                     </button>
                   </td>
                 </tr>
@@ -267,7 +308,12 @@ const FilmsAdmin = ({ onFilmSelect }) => {
         )}
       </div>
 
-      <Modal show={showModal} onHide={handleClose} size="lg" dialogClassName="modal-dialog-centered">
+      <Modal
+        show={showModal}
+        onHide={handleClose}
+        size="lg"
+        dialogClassName="modal-dialog-centered"
+      >
         <Modal.Header closeButton className="bg-dark text-white border-0">
           {selectedFilm ? (
             <Modal.Title>Modifica Film {selectedFilm.id_film}</Modal.Title>
@@ -354,36 +400,59 @@ const FilmsAdmin = ({ onFilmSelect }) => {
                 />
               </Form.Group>
               <Form.Group controlId="formFilmPosterUrl" className="mb-3">
-                <Form.Label>Poster URL</Form.Label>
+                <Form.Label>URL Poster</Form.Label>
                 <Form.Control
                   type="text"
                   name="poster_url"
                   value={selectedFilm.poster_url}
                   onChange={handleChange}
-                  placeholder="Inserisci il URL del poster"
+                  placeholder="Inserisci l'URL del poster"
                   className="rounded-4 px-4 py-2 bg-black text-secondary placeholder-light border-0 fs-small"
                 />
               </Form.Group>
               <Form.Group controlId="formFilmBackdropUrl" className="mb-3">
-                <Form.Label>Backdrop URL</Form.Label>
+                <Form.Label>URL Backdrop</Form.Label>
                 <Form.Control
                   type="text"
                   name="backdrop_url"
                   value={selectedFilm.backdrop_url}
                   onChange={handleChange}
-                  placeholder="Inserisci il URL del backdrop"
+                  placeholder="Inserisci l'URL del backdrop"
                   className="rounded-4 px-4 py-2 bg-black text-secondary placeholder-light border-0 fs-small"
                 />
               </Form.Group>
             </Form>
           )}
         </Modal.Body>
-        <Modal.Footer className="bg-dark border-0">
+        <Modal.Footer className="bg-dark text-white border-0">
           <Button
-            className="button-check border-0 rounded-4 text-black fw-bold fs-small mb-2"
-            onClick={handleSaveChanges}
+            variant="secondary"
+            onClick={handleClose}
+            className="border-0 rounded-4 text-black fw-bold fs-small"
           >
-            {selectedFilm?.id_film ? "Salva Modifiche" : "Aggiungi Film"}
+            Chiudi
+          </Button>
+          <Button
+            onClick={handleSaveChanges}
+            className="button-check border-0 rounded-4 text-black fw-bold fs-small"
+          >
+            {selectedFilm ? "Salva modifiche" : "Aggiungi film"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title className="text-white border-0">
+            Conferma eliminazione
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-white border-0">
+          Sei sicuro di voler eliminare questo film?
+        </Modal.Body>
+        <Modal.Footer className="text-white border-0">
+          <Button variant="danger" onClick={handleDelete} className="rounded-4">
+            Elimina
           </Button>
         </Modal.Footer>
       </Modal>
