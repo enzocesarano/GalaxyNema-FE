@@ -148,7 +148,7 @@ const ProfiloUtente = ({ onLogout }) => {
   const isFormValid = isFormModified && Object.keys(errors).length === 0;
 
   return (
-    <Col className="col-12 col-xl-6 m-0 px-2 mb-5">
+    <Col className="col-12 col-xl-6 m-0 px-2 mb-5 ">
       <div className="text-center mb-4">
         <img
           src={logged.avatar || "default-avatar.png"}
@@ -227,16 +227,16 @@ const ProfiloUtente = ({ onLogout }) => {
         )}
       </Form>
 
-      <div className="d-flex justify-content-center d-xl-none mb-4">
+      <div className="d-flex justify-content-center d-xl-none mb-4 mt-5">
         <div>
           <Link to="/" className="nav-link fw-bold p-2 px-3 rounded-4 w-auto text-danger" onClick={onLogout}>Logout
           </Link>
         </div>
       </div>
 
-      <Modal show={avatarModalShow} onHide={() => setAvatarModalShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Cambia Avatar</Modal.Title>
+      <Modal show={avatarModalShow} onHide={() => setAvatarModalShow(false)} className="text-secondary">
+        <Modal.Header closeButton className="border-0">
+          <Modal.Title >Cambia Avatar</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -246,11 +246,12 @@ const ProfiloUtente = ({ onLogout }) => {
                 type="file"
                 accept="image/*"
                 onChange={handleAvatarChange}
+                className="bg-dark text-light border-secondary focus-border-custom"
               />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer  className="border-0">
           <Button
             variant="primary"
             onClick={handleAvatarSubmit}
