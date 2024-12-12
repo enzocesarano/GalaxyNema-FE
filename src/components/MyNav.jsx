@@ -164,7 +164,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
             <i className="bi bi-tiktok m-0"></i>
           </Link>
           <Link
-            to="https://wa.me/3470757363"
+            to="https://wa.me/+393470757363"
             target="_blank"
             className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
               text-secondary"
@@ -172,10 +172,11 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
             <i className="bi bi-whatsapp m-0"></i>
           </Link>
         </div>
-        <p className="text-secondary text-center">
-          &copy; {new Date().getFullYear()} GALAXYNEMA. Tutti i diritti
-          riservati.
+        <p className="text-secondary text-center m-0">
+          &copy; {new Date().getFullYear()} GALAXYNEMA.
         </p>
+        <p className="text-secondary text-center"> Tutti i diritti
+        riservati.</p>
       </div>
     </Navbar>
   );

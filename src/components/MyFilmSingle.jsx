@@ -61,18 +61,17 @@ const MyFilmSingle = () => {
     if (film) {
       const firstSala = film.proiezioneList[0].sala.nome;
       setSelectedSala(firstSala);
-
       const firstFilteredDays = film.proiezioneList
         .filter((proiezione) => proiezione.sala.nome === firstSala)
-        .map((proiezione) => dayjs(proiezione.dataProiezione).format("DD-MM"))
+        .map((proiezione) => dayjs(proiezione.dataProiezione).format("DD-MM-YYYY"))
         .filter((value, index, self) => self.indexOf(value) === index);
-      setSelectedDay(firstFilteredDays[0]);
-
+  
+      const firstDay = firstFilteredDays[0];
+      setSelectedDay(firstDay);
       const firstProiezione = film.proiezioneList.find(
         (proiezione) =>
           proiezione.sala.nome === firstSala &&
-          dayjs(proiezione.dataProiezione).format("DD-MM") ===
-            firstFilteredDays[0]
+          dayjs(proiezione.dataProiezione).format("DD-MM-YYYY") === firstDay
       );
       setSelectedProiezione(firstProiezione);
     }
@@ -128,39 +127,66 @@ const MyFilmSingle = () => {
       items: 2,
     },
   };
-  const filteredDays = selectedSala
-    ? film.proiezioneList
-        .filter((proiezione) => proiezione.sala.nome === selectedSala)
-        .map((proiezione) => {
-          const formattedDate = dayjs(proiezione.dataProiezione);
-          const weekday = formattedDate.format("dddd");
-          return {
-            day: formattedDate.format("DD-MM"),
-            weekday: weekday.charAt(0).toUpperCase() + weekday.slice(1),
-          };
-        })
-        .filter(
-          (value, index, self) =>
-            self.findIndex((v) => v.day === value.day) === index
-        )
-    : [];
-
-  const filteredProiezioni =
-    selectedSala && selectedDay
-      ? film.proiezioneList.filter((proiezione) => {
-          const isSameSala = proiezione.sala.nome === selectedSala;
-          const proiezioneDate = dayjs(proiezione.dataProiezione).format(
-            "DD-MM"
-          );
-          const isSameDay = proiezioneDate === selectedDay;
-
-          return isSameSala && isSameDay;
-        })
-      : [];
 
   const uniqueSaleNames = [
-    ...new Set(film.proiezioneList.map((proiezione) => proiezione.sala.nome)),
+    ...new Set(
+      film.proiezioneList
+        .filter((proiezione) => {
+          const proiezioneTime = dayjs(proiezione.oraInizio);
+          const now = dayjs();
+          return proiezioneTime.isAfter(now);
+        })
+        .map((proiezione) => proiezione.sala.nome)
+    ),
   ];
+
+  const filteredDays = selectedSala
+  ? film.proiezioneList
+      .filter((proiezione) => proiezione.sala.nome === selectedSala)
+      .map((proiezione) => {
+        const formattedDate = dayjs(proiezione.dataProiezione);
+        const weekday = formattedDate.format("dddd");
+        const now = dayjs();
+
+        if (formattedDate.isAfter(now, 'day')) {
+          return {
+            day: formattedDate.format("DD-MM-YYYY"),
+            weekday: weekday.charAt(0).toUpperCase() + weekday.slice(1),
+          };
+        } else if (formattedDate.isSame(now, 'day')) {
+          const proiezioneTime = dayjs(proiezione.oraInizio);
+          if (proiezioneTime.isAfter(now)) {
+            return {
+              day: formattedDate.format("DD-MM-YYYY"),
+              weekday: weekday.charAt(0).toUpperCase() + weekday.slice(1),
+            };
+          }
+        }
+        return null;
+      })
+      .filter(Boolean)
+      .filter(
+        (value, index, self) =>
+          self.findIndex((v) => v.day === value.day) === index
+      )
+  : [];
+
+  const filteredProiezioni =
+  selectedSala && selectedDay
+    ? film.proiezioneList.filter((proiezione) => {
+        const isSameSala = proiezione.sala.nome === selectedSala;
+        const proiezioneDate = dayjs(proiezione.dataProiezione).format("DD-MM-YYYY");
+        const isSameDay = proiezioneDate === selectedDay;
+        const proiezioneTime = dayjs(proiezione.oraInizio);
+        const now = dayjs();
+
+        return (
+          isSameSala &&
+          isSameDay &&
+          proiezioneTime.isAfter(now)
+        );
+      })
+    : [];
 
   return (
     <Col className="col-12 col-xl-10 h-100">
