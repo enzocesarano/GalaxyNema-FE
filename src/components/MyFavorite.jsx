@@ -37,7 +37,7 @@ const MyFavorites = ({ films }) => {
   };
 
   return (
-    <Col className="col-12 col-xl-6 p-0 m-0 h-100 colFavorite overflow-card overflow-card-xl mb-5">
+    <Col className="col-12 col-xl-6 p-0 m-0 h-100 colFavorite overflow-card mb-5">
       {films.map((film) => (
         <div key={film.id_film} className="m-2 mb-3 border border-0 border-bottom border-secondary">
           <Link
