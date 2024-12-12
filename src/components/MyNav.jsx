@@ -30,7 +30,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
   return (
     <Navbar
       expand="xl"
-      className="d-flex flex-row flex-xl-column p-0 mb-xl-3 text-center text-xl-start "
+      className="d-flex flex-row flex-xl-column h-100 p-0 mb-xl-3 text-center text-xl-start "
     >
       <div className="w-100 mb-5 d-none d-xl-block">
         <img
@@ -49,7 +49,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
           <i className="bi bi-house-fill m-0 me-xl-2"></i>
           <span className="d-none d-xl-inline">Home</span>
         </Link>
-        
+
         <Link
           to="/favorites"
           className={`nav-link fw-bold p-2 px-3 rounded-4 w-auto ${
@@ -127,6 +127,55 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         ) : (
           <MyLogin onLoginSuccess={onLoginSuccess} />
         )}
+      </div>
+
+      <div className="p-4 h-100 d-xl-flex flex-column justify-content-end d-none">
+        <div className="d-flex fs-4 justify-content-between mb-2">
+          <Link
+            to="https://www.instagram.com/enzo.cesaranoo/"
+            target="_blank"
+            className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
+              text-secondary"
+          >
+            <i className="bi bi-instagram m-0"></i>
+          </Link>
+          <Link
+            to="https://it-it.facebook.com/vinc.cesarano"
+            target="_blank"
+            className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
+              text-secondary"
+          >
+            <i className="bi bi-facebook m-0"></i>
+          </Link>
+          <Link
+            to="https://x.com/CesaranoVinc"
+            target="_blank"
+            className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
+              text-secondary"
+          >
+            <i className="bi bi-twitter-x m-0"></i>
+          </Link>
+          <Link
+            to="https://www.tiktok.com/@enzo.cesarano"
+            target="_blank"
+            className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
+              text-secondary"
+          >
+            <i className="bi bi-tiktok m-0"></i>
+          </Link>
+          <Link
+            to="https://wa.me/3470757363"
+            target="_blank"
+            className="nav-link-social fw-bold p-1 px-2 rounded-4 w-auto 
+              text-secondary"
+          >
+            <i className="bi bi-whatsapp m-0"></i>
+          </Link>
+        </div>
+        <p className="text-secondary text-center">
+          &copy; {new Date().getFullYear()} GALAXYNEMA. Tutti i diritti
+          riservati.
+        </p>
       </div>
     </Navbar>
   );

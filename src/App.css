@@ -432,3 +432,12 @@ input[type="date"]::-webkit-time-picker-indicator {
   background-color: #212529 !important;
 
 }
+
+
+.nav-link-social {
+  transition-duration: 0.3s !important;
+}
+
+.nav-link-social:hover {
+  color: white !important;
+}

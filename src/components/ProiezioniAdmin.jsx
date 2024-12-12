@@ -6,6 +6,7 @@ import {
   deleteProiezioni,
   filmsArray,
   filmsWhitoutProiezioni,
+  updateProiezione,
 } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -75,24 +76,45 @@ const ProiezioniAdmin = ({ selectedFilm, selectedProjection }) => {
 
   const handleSaveChanges = () => {
     if (selectedProiezione) {
-      const { dataProiezione, oraInizio, moltiplicatore_prezzo, id_sala } =
-        selectedProiezione;
-      const newProiezione = {
+      const {
+        id_proiezione,
+        dataProiezione,
+        oraInizio,
+        moltiplicatore_prezzo,
+        id_sala,
+      } = selectedProiezione;
+  
+      const updatedProiezione = {
         dataProiezione,
         oraInizio,
         moltiplicatore_prezzo: parseFloat(moltiplicatore_prezzo),
       };
-
+  
       const idFilm = selectedFilm.id_film;
-      dispatch(addProiezione(newProiezione, id_sala, idFilm))
-        .then(() => {
-          dispatch(filmsArray());
-          dispatch(filmsWhitoutProiezioni());
-        })
-        .catch((error) => {
-          console.error("Errore durante l'aggiunta della proiezione:", error);
-        });
-      setShowModal(false);
+  
+      if (id_proiezione) {
+        dispatch(updateProiezione(updatedProiezione, id_proiezione, id_sala, idFilm))
+          .then(() => {
+            dispatch(filmsArray());
+            dispatch(filmsWhitoutProiezioni());
+            setUpdateFlag((prev) => !prev);
+            setShowModal(false);
+          })
+          .catch((error) => {
+            console.error("Errore durante la modifica della proiezione:", error);
+          });
+      } else {
+        dispatch(addProiezione(updatedProiezione, id_sala, idFilm))
+          .then(() => {
+            dispatch(filmsArray());
+            dispatch(filmsWhitoutProiezioni());
+            setUpdateFlag((prev) => !prev);
+            setShowModal(false);
+          })
+          .catch((error) => {
+            console.error("Errore durante l'aggiunta della proiezione:", error);
+          });
+      }
     }
   };
 
@@ -134,6 +156,7 @@ const ProiezioniAdmin = ({ selectedFilm, selectedProjection }) => {
                   <th>Sala</th>
                   <th>Data Proiezione</th>
                   <th>Ora Inizio</th>
+                  <th>Ora Fine</th>
                   <th>Moltiplicatore</th>
                   <th>Totale Biglietti</th>
                   <th>Azioni</th>
@@ -146,6 +169,7 @@ const ProiezioniAdmin = ({ selectedFilm, selectedProjection }) => {
                     <td>{proiezione.sala?.nome}</td>
                     <td>{proiezione.dataProiezione}</td>
                     <td>{dayjs(proiezione.oraInizio).format("HH:mm")}</td>
+                    <td>{dayjs(proiezione.oraFine).format("HH:mm")}</td>
                     <td>{proiezione.moltiplicatore_prezzo.toFixed(1)}</td>
                     <td>
                       {proiezione.ticketList ? proiezione.ticketList.length : 0}

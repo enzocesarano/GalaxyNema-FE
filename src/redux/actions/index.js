@@ -389,6 +389,41 @@ export const addProiezione = (proiezione, id_sala, id_film) => {
   };
 };
 
+export const updateProiezione = (proiezione, id_proiezione, id_sala, id_film) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/me/proiezioni/${id_proiezione}?id_sala=${id_sala}&id_film=${id_film}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(proiezione),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Errore durante la modifica della proiezione");
+      }
+
+      const updatedProiezione = await response.json();
+
+      dispatch({
+        type: UPDATE_PROIEZIONI,
+        payload: updatedProiezione,
+      });
+
+      return updatedProiezione;
+    } catch (error) {
+      console.error("Errore durante la modifica della proiezione:", error.message);
+      throw error;
+    }
+  };
+};
+
+
 
 export const deleteProiezioni = (proiezioneId) => {
   return async () => {
