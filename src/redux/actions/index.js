@@ -51,7 +51,7 @@ export const register = (data) => {
 };
 
 export const login = (data) => {
-  return fetch("http://localhost:3001/auth/login", {
+  return fetch("https://galaxynema.onrender.com/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export const login = (data) => {
 
 export const meLogin = () => {
   return (dispatch) => {
-    fetch("http://localhost:3001/me", {
+    fetch("https://galaxynema.onrender.com/me", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -170,7 +170,7 @@ export const updateAvatar = (avatarFile) => {
 export const filmsArray = (filters = {}) => {
   return (dispatch) => {
     const url =
-      "http://localhost:3001/films/filters?" +
+      "https://galaxynema.onrender.com/films/filters?" +
       Object.entries(filters)
         .map(
           ([key, value]) =>
@@ -201,7 +201,7 @@ export const filmsArray = (filters = {}) => {
 
 export const filmsWhitoutProiezioni = () => {
   return (dispatch) => {
-    fetch("http://localhost:3001/films/senzaproiezioni", {})
+    fetch("https://galaxynema.onrender.com/films/senzaproiezioni", {})
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -224,7 +224,7 @@ export const filmsWhitoutProiezioni = () => {
 
 export const addFilm = (film) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/me/films`, {
+    fetch(`https://galaxynema.onrender.com/me/films`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -256,7 +256,7 @@ export const addFilm = (film) => {
 export const deleteFilm = (filmId) => {
   return async () => {
     try {
-      const response = await fetch(`http://localhost:3001/me/films/${filmId}`, {
+      const response = await fetch(`https://galaxynema.onrender.com/me/films/${filmId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -280,7 +280,7 @@ export const updateFilm = (data) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        "http://localhost:3001/me/films/" + data.id_film,
+        "https://galaxynema.onrender.com/me/films/" + data.id_film,
         {
           method: "PUT",
           headers: {
@@ -335,7 +335,7 @@ export const newsCinema = () => {
 
 export const getSale = () => {
   return (dispatch) => {
-    fetch("http://localhost:3001/sale", {
+    fetch("https://galaxynema.onrender.com/sale", {
     })
       .then((response) => {
         if (response.ok) {
@@ -361,7 +361,7 @@ export const getSale = () => {
 
 export const addProiezione = (proiezione, id_sala, id_film) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/me/proiezioni?id_sala=${id_sala}&id_film=${id_film}`, { 
+    return fetch(`https://galaxynema.onrender.com/me/proiezioni?id_sala=${id_sala}&id_film=${id_film}`, { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -393,7 +393,7 @@ export const updateProiezione = (proiezione, id_proiezione, id_sala, id_film) =>
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/me/proiezioni/${id_proiezione}?id_sala=${id_sala}&id_film=${id_film}`,
+        `https://galaxynema.onrender.com/me/proiezioni/${id_proiezione}?id_sala=${id_sala}&id_film=${id_film}`,
         {
           method: "PUT",
           headers: {
@@ -428,7 +428,7 @@ export const updateProiezione = (proiezione, id_proiezione, id_sala, id_film) =>
 export const deleteProiezioni = (proiezioneId) => {
   return async () => {
     try {
-      const response = await fetch(`http://localhost:3001/me/proiezioni/${proiezioneId}`, {
+      const response = await fetch(`https://galaxynema.onrender.com/me/proiezioni/${proiezioneId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
