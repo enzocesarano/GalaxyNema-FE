@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   addPreferiti,
+  getPreferiti,
   removePreferiti,
   selectProiezioneAction,
 } from "../redux/actions";
@@ -30,10 +31,8 @@ const MyFilmSingle = () => {
     try {
       if (isFavorite) {
         dispatch(removePreferiti(film));
-        setIsFavorite(false);
       } else {
         dispatch(addPreferiti(film));
-        setIsFavorite(true);
       }
     } catch (err) {
       console.error("Errore nella gestione dei preferiti:", err);

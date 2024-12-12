@@ -10,7 +10,9 @@ import { jwtDecode } from "jwt-decode";
 const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
   const logged = useSelector((store) => store.loginMe.loginMe);
   const location = useLocation();
-
+  const defaultAvatar =
+    "https://romanroadtrust.co.uk/wp-content/uploads/2018/01/profile-icon-png-898.png";
+  const avatar = logged?.avatar || defaultAvatar;
   const token = localStorage.getItem("token");
   let userId = null;
 
@@ -105,13 +107,23 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
             <i className="bi bi-box-arrow-in-right "></i>
           </Link>
         ) : (
-          <Link to={`/me/${userId}`} className="p-1 rounded-4 px-3 d-xl-none">
+          <Link
+            to={`/me/${userId || ""}`}
+            className="p-1 rounded-4 px-3 d-xl-none"
+          >
             <div className="w-10">
-              <Image
-                src={logged.avatar}
-                alt="Profile"
-                className="imageProfile w-100 h-100 object-fit-cover rounded-circle"
-              />
+              {avatar ? (
+                <Image
+                  src={avatar}
+                  alt="Profile"
+                  className="imageProfile w-100 h-100 object-fit-cover rounded-circle"
+                />
+              ) : (
+                <i
+                  className="bi bi-person-circle text-secondary"
+                  style={{ fontSize: "2rem" }}
+                ></i>
+              )}
             </div>
           </Link>
         )}
@@ -175,8 +187,10 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         <p className="text-secondary text-center m-0">
           &copy; {new Date().getFullYear()} GALAXYNEMA.
         </p>
-        <p className="text-secondary text-center"> Tutti i diritti
-        riservati.</p>
+        <p className="text-secondary text-center">
+          {" "}
+          Tutti i diritti riservati.
+        </p>
       </div>
     </Navbar>
   );

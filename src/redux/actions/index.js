@@ -564,6 +564,7 @@ export const addPreferiti = (film) => {
           type: AGGIUNGI_PREFERITO,
           payload: film,
         });
+        dispatch(getPreferiti())
       })
       .catch((error) => {
         console.error("Errore durante l'aggiunta ai preferiti:", error.message);
@@ -592,6 +593,8 @@ export const removePreferiti = (film) => {
           type: RIMUOVI_PREFERITO,
           payload: film,
         });
+
+        dispatch(getPreferiti())
       })
       .catch((error) => {
         console.error("Errore: ", error.message);
