@@ -1,5 +1,5 @@
 
-# 🌌 GALAXYNEMA PROJECT 🎬
+# 🌜 GALAXYNEMA PROJECT 🎬
 
 Un'applicazione web dedicata agli amanti del cinema, dove gli utenti possono navigare tra film, aggiungerli ai preferiti, acquistare biglietti e rimanere aggiornati sulle ultime notizie cinematografiche.
 
