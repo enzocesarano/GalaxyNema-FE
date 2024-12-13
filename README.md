@@ -87,13 +87,5 @@ Se desideri contribuire al progetto, segui questi passi:
 
 ---
 
-## 🎯 **Obiettivi futuri**
-
-- Aggiungere l'autenticazione utente tramite **OAuth**.
-- Implementare un sistema di recensioni per i film.
-- Ottimizzare la gestione delle API per il backend.
-
----
-
   
 - **`Ctrl + D`** (su Linux/Mac) o **`Ctrl + Z`** (su Windows) per uscire direttamente dalla shell.
