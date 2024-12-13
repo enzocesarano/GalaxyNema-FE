@@ -1,3 +1,4 @@
+
 # 🌌 GALAXYNEMA PROJECT 🎬
 
 Un'applicazione web dedicata agli amanti del cinema, dove gli utenti possono navigare tra film, aggiungerli ai preferiti, acquistare biglietti e rimanere aggiornati sulle ultime notizie cinematografiche.
@@ -8,7 +9,7 @@ Un'applicazione web dedicata agli amanti del cinema, dove gli utenti possono nav
 
 - **React.js**: Framework per la creazione dell'interfaccia utente.
 - **Redux**: Gestione centralizzata dello stato dell'applicazione.
-- **JavaScript (ES6+)**: Linguaggio di programmazione principale.
+- **JavaScript**: Linguaggio di programmazione principale.
 - **Multi Carousel**: Per la gestione dei caroselli di immagini e contenuti.
 - **React Big Calendar**: Per visualizzare e gestire eventi in un calendario.
 - **Google Maps API**: Per l'integrazione delle mappe interattive.
@@ -25,28 +26,74 @@ Apri il terminale e clona il progetto utilizzando il seguente comando:
 ```bash
 git clone https://github.com/tuo-utente/galaxynema-project.git
 cd galaxynema-project
+```
 
+### 2. **Installa le dipendenze**
 
-🌐 Funzionalità principali
-Home Page
-Carosello dinamico di film.
-Sezione con i film più attesi e informazioni aggiornate.
-Preferiti
-Sezione dove l'utente può salvare i suoi film preferiti.
-Ticket
-Gestione dei biglietti acquistati.
-Calendario
-Calendario interattivo con React Big Calendar per visualizzare eventi legati ai film.
-Mappe
-Visualizzazione delle sale cinematografiche più vicine tramite Google Maps API.
-🧑‍💻 Contributi
+Apri la cartella del progetto in **Visual Studio Code** e assicurati di avere **Node.js** e **npm** installati. Se non li hai ancora, puoi scaricarli da [nodejs.org](https://nodejs.org/).
+
+Nel terminale di Visual Studio Code, esegui il seguente comando per installare tutte le dipendenze:
+
+```bash
+npm install
+```
+
+### 3. **Avvia il progetto**
+
+Dopo aver installato tutte le dipendenze, avvia il server di sviluppo con:
+
+```bash
+npm start
+```
+
+## 🌐 **Funzionalità principali**
+
+### Home Page
+- Sidebar a sinistra con link di navigazione.
+- Hero al centro pagina con film in uscita.
+- Carosello dinamico di film disponibili in sala.
+- Sezione con i film più attesi e informazioni aggiornate.
+
+### Preferiti
+- Sezione dove l'utente può vedere i suoi film preferiti.
+
+### Ticket
+- Gestione dei biglietti acquistati.
+
+### Calendario
+- Calendario interattivo con **React Big Calendar** per visualizzare eventi legati ai film.
+
+### Mappe
+- Visualizzazione della sala cinematograficha tramite **Google Maps**.
+
+---
+
+## 🧑‍💻 **Contributi**
+
 Se desideri contribuire al progetto, segui questi passi:
 
-Fork il repository.
-Crea un nuovo ramo (git checkout -b feature/your-feature).
-Fai le modifiche necessarie.
-Crea un pull request.
-👤 Autore
-Nome: Vincenzo
-Email: [Tua Email]
-LinkedIn: [Link al profilo]
+1. Fork il repository.
+2. Crea un nuovo ramo (`git checkout -b feature/your-feature`).
+3. Fai le modifiche necessarie.
+4. Crea un pull request.
+
+---
+
+## 👤 **Autore**
+
+- **Nome**: Vincenzo Cesarano
+- **Email**: vinc.cesarano@gmail.com
+- **LinkedIn**: [\[Link al profilo\]](https://www.linkedin.com/in/vincenzo-cesarano-6b2602252/)
+
+---
+
+## 🎯 **Obiettivi futuri**
+
+- Aggiungere l'autenticazione utente tramite **OAuth**.
+- Implementare un sistema di recensioni per i film.
+- Ottimizzare la gestione delle API per il backend.
+
+---
+
+  
+- **`Ctrl + D`** (su Linux/Mac) o **`Ctrl + Z`** (su Windows) per uscire direttamente dalla shell.
