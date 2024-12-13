@@ -39,8 +39,8 @@ const MyLogin = ({ onLoginSuccess }) => {
 
 
   return (
-    <div className="flex-grow-1">
-      <p className="text-secondary fw-bold px-3 w-100 text-center text-xl-start rounded-4 fs-4 m-0 mb-3">
+    <div>
+      <p className="text-secondary fw-bold px-3 w-100 text-center rounded-4 fs-4 m-0 mb-3">
         Login<i className="bi bi-arrow-right-circle-fill ms-3 fs-5"></i>
       </p>
       <Form className="mb-2" onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ const MyLogin = ({ onLoginSuccess }) => {
         </Button>
       </Form>
 
-      <Link to={"/register"} className="nav-link text-secondary text-center text-xl-start fw-bold w-100 p-2 px-3 mb-3 mb-xl-0 rounded-4">
+      <Link to={"/register"} className="nav-link text-secondary text-center fw-bold w-100 p-1 px-3 mb-3 mb-xl-0 rounded-4">
         <i className="bi bi-cursor-fill me-2"></i>Oppure registrati
       </Link>
     </div>

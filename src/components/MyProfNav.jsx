@@ -24,7 +24,7 @@ const MyProfNav = ({ onLogout }) => {
   const nome = logged?.nome || defaultName;
 
   return (
-    <div className="d-none d-xl-flex fs-5 align-items-center ">
+    <div className="d-none d-xl-flex fs-5 align-items-center justify-content-center ">
       <div className="w-10 me-3">
         <Link to={`/me/${userId || ""}`}>
           {avatar ? (

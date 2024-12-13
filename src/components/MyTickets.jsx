@@ -47,8 +47,9 @@ const MyTickets = () => {
 
   return (
     <Col className="col-12 col-xl-6 p-1 h-100 colFavorite overflow-card mb-5 mb-xl-0">
+      <h2 className="text-center text-secondary mb-5">TICKETS</h2>
       {isLoading ? (
-        <p className="text-secondary">Non hai ancora tickets!</p>
+        <p className="text-secondary text-center">Non hai ancora tickets!</p>
       ) : (
         invoices.map((invoice) => {
           const associatedFilm = films.content.find((film) =>

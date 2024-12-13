@@ -27,6 +27,8 @@ const MyNews = () => {
               : "col-12 col-xl-4 d-none d-xl-flex"
           }`}
         >
+          <h2 className="text-center text-secondary">NEWS</h2>
+          <p className="text-center text-secondary mb-5">Tutte le news sul mondo del cinema!</p>
           <div>
             {articlesWithAuthor.length > 0 ? (
               articlesWithAuthor.map((article, index) => (
