@@ -24,8 +24,8 @@ const MyProfNav = ({ onLogout }) => {
   const nome = logged?.nome || defaultName;
 
   return (
-    <div className="d-none d-xl-flex fs-5 align-items-center justify-content-center ">
-      <div className="w-10 me-3">
+    <div className="d-none d-xl-flex fs-5 align-items-center ">
+      <div className="w-10 mb-2 me-3">
         <Link to={`/me/${userId || ""}`}>
           {avatar ? (
             <Image
@@ -42,7 +42,7 @@ const MyProfNav = ({ onLogout }) => {
         </Link>
       </div>
 
-      <p className="text-secondary p-0 m-0 me-3">{nome}</p>
+      <p className="text-secondary p-0 m-0 me-3">Ciao, {nome}!</p>
 
       <i
         className="bi bi-box-arrow-right text-danger cursor-pointer"

@@ -108,10 +108,7 @@ const MyDaily = ({ proiezione }) => {
     );
   });
 
-  // Leggi l'autenticazione da localStorage
   const isAuthenticated = localStorage.getItem("token") !== null;
-
-  // Condizione per il messaggio di checkout
   const isCheckoutDisabled = selectedTickets.length === 0 || !isAuthenticated;
 
   return (

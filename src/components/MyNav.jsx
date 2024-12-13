@@ -144,7 +144,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
       </div>
 
       <div className="p-4 m-0 d-xl-flex flex-column justify-content-end d-none">
-        <div className="d-flex fs-4 justify-content-between mb-2">
+        <div className="d-flex fs-5 justify-content-between mb-2">
           <Link
             to="https://www.instagram.com/enzo.cesaranoo/"
             target="_blank"
@@ -189,7 +189,7 @@ const MyNav = ({ isAuthenticated, onLoginSuccess, onLogout }) => {
         <p className="text-secondary text-center m-0">
           &copy; {new Date().getFullYear()} GALAXYNEMA.
         </p>
-        <p className="text-secondary text-center m-0">
+        <p className="text-secondary fs-small text-center m-0">
           {" "}
           Tutti i diritti riservati.
         </p>

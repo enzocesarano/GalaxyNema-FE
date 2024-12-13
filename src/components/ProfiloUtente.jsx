@@ -256,6 +256,9 @@ const ProfiloUtente = ({ onLogout }) => {
             variant="primary"
             onClick={handleAvatarSubmit}
             disabled={!avatarFile || loading}
+            className={`button-check border-0 text-black rounded-4 fw-bold px-4 ${
+              !avatarFile || loading ? "bg-secondary" : ""
+            }`}
           >
             {loading ? "Caricamento..." : "Aggiorna Avatar"}
           </Button>
