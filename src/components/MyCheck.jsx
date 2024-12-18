@@ -208,11 +208,11 @@ const MyCheck = () => {
       />
       <Row className="p-0 p-xl-4 m-0 h-100 position-absolute w-100 start-0 top-0 schermoSmallCheck">
         <Col className="col-12 col-xl-6 overflow-card h-100 ">
-          <h2 className="text-secondary fw-bold fs-5">Dettagli dei Tickets</h2>
+          <h2 className="text-light fw-bold fs-5">Dettagli dei Tickets</h2>
 
           {ticketData.map((ticket, index) => (
             <div key={index} className="mb-4">
-              <h4 className="text-secondary fs-6">
+              <h4 className="text-light fs-6">
                 Fila: {ticket.postoASedere.fila} - Posto:{" "}
                 {ticket.postoASedere.numeroPosto} - Prezzo: €{" "}
                 {ticket.prezzo.toFixed(2)}
@@ -270,7 +270,7 @@ const MyCheck = () => {
         </Col>
 
         <Col className="col-12 col-xl-6 mb-5 ">
-          <h2 className="text-secondary fw-bold fs-5">Dati di Fatturazione</h2>
+          <h2 className="text-light fw-bold fs-5">Dati di Fatturazione</h2>
           <Form>
             <Form.Group className="mb-2">
               <Form.Control
@@ -344,14 +344,11 @@ const MyCheck = () => {
               </div>
             </Form.Group>
             <div className="d-flex flex-column align-items-end">
-              <h2 className="text-secondary fs-4">
+              <h2 className="text-light fw-bold fs-4">
                 Totale: €{totalAmount.toFixed(2)}
               </h2>
 
               {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-              {successMessage && (
-                <Alert variant="success">{successMessage}</Alert>
-              )}
               <div className="mb-5">
                 <Button
                   onClick={handleSubmit}
